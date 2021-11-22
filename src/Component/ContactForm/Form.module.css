@@ -1,5 +1,11 @@
 .section__form {
-  margin-top: 35px;
+  margin-top: 15px;
+}
+
+.titleForm {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .form {
@@ -8,7 +14,7 @@
   max-width: 500px;
   margin-right: auto;
   margin-left: auto;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
   padding: 20px;
   background-color: rgba(209, 233, 253, 0.478);
   border: 2px solid black;
@@ -16,23 +22,25 @@
     23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
-.label {
+.generalBoxInputs {
   display: flex;
-  flex-direction: column;
-  max-width: 250px;
+}
+
+.label {
   font-size: 22px;
   font-weight: 700;
-  margin-bottom: 10px;
 }
 
 .label__agree {
-  display: flex;
-  align-items: flex-end;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
   max-width: 80px;
   cursor: pointer;
 }
 
 .checkbox {
+  margin-right: 5px;
   cursor: pointer;
 }
 
@@ -47,6 +55,8 @@ input::placeholder {
 
 .btn {
   display: block;
+  margin-right: auto;
+  margin-left: auto;
   max-width: 120px;
   font-size: 16px;
   margin-top: 10px;
@@ -61,8 +71,4 @@ input::placeholder {
 .btn:active {
   background-color: rgba(8, 51, 172, 0.719);
   color: #fff;
-}
-
-.animate__animated.animate__backInUp {
-  --animate-duration: 2.5s;
 }

@@ -4,10 +4,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  background-image: url(./images/34.jpg);
+  background-image: url(./images/fon_novyy.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  backdrop-filter: blur(2px);
+  /* backdrop-filter: blur(2px); */
+  /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite; */
 }
 
 img {
