@@ -1,0 +1,8 @@
+.content {
+  min-height: calc(100vh - 80px);
+}
+
+.text {
+  text-align: center;
+  margin-top: 50px;
+}

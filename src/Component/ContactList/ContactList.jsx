@@ -30,7 +30,7 @@ function ContactList() {
                         <tr>
                             <th>#</th>
                             <th>Username</th>
-                            <th>Number</th>
+                            <th>Phone</th>
                             <th>Delete</th>
                         </tr>
                     </thead>

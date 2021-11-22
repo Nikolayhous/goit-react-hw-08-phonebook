@@ -19,6 +19,7 @@
   filter: url(#distortionFilter);
   composes: gradientColor;
   /* color: rgb(232, 232, 232); */
+  margin-top: 5px;
 }
 .title3::selection {
   background: #161616;

@@ -1,0 +1,39 @@
+.header {
+  background-color: rgba(29, 78, 78, 0.5);
+  padding: 35px 85px;
+  box-shadow: 0 5px 0 #3c93d5;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.item:not(:last-child) {
+  margin-right: 25px;
+}
+
+.link {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: rgb(231, 247, 250);
+}
+
+.link:hover {
+  color: tomato;
+}
+
+.activeLink {
+  color: tomato;
+  border-bottom: 2px solid tomato;
+  display: inline-block;
+}
+
+.navigation {
+}
