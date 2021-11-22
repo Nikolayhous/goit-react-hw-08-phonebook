@@ -3,6 +3,9 @@ import { getFilteredContacts } from '../../redux/phonebook/selector';
 import s from './ContactList.module.css';
 import { fetchContact, deleteContact } from '../../redux/phonebook/operations';
 import { useEffect } from 'react';
+import Table from 'react-bootstrap/Table';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { toast } from 'react-toastify';
 
 function ContactList() {
     const contacts = useSelector(getFilteredContacts);
@@ -13,25 +16,43 @@ function ContactList() {
         dispatch(fetchContact());
     }, [dispatch]);
 
+    const onDeleteContact = id => {
+        dispatch(deleteContact(id));
+        toast.success('Contact delete');
+    };
+
     return (
         <div className={s.contactList}>
             <p className={s.total__number}>Your contacts:{totalNumber}</p>
             {contacts.length > 0 && (
-                <ul className={s.list}>
-                    {contacts.map(({ name, phone, id }) => (
-                        <li className={s.item} key={id}>
-                            <p className={s.text}>{name}:</p>
-                            <p className={`${s.text} ${s.number}`}>{phone}</p>
-                            <button
-                                className={s.btn}
-                                type="button"
-                                onClick={() => dispatch(deleteContact(id))}
-                            >
-                                Delete
-                            </button>
-                        </li>
-                    ))}
-                </ul>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Number</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {contacts.map(({ name, phone, id }) => (
+                            <tr key={id}>
+                                <td></td>
+                                <td>{name}</td>
+                                <td>{phone}</td>
+                                <td>
+                                    <button
+                                        className={s.btn}
+                                        type="button"
+                                        onClick={() => onDeleteContact(id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
             )}
         </div>
     );

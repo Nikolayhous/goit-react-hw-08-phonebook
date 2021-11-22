@@ -19,7 +19,6 @@
   filter: url(#distortionFilter);
   composes: gradientColor;
   /* color: rgb(232, 232, 232); */
-  padding-top: 20px;
 }
 .title3::selection {
   background: #161616;

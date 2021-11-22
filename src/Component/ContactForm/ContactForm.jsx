@@ -3,6 +3,7 @@ import s from './Form.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from '../../redux/phonebook/selector';
 import { addContact } from '../../redux/phonebook/operations';
+import { toast } from 'react-toastify';
 
 function ContactForm() {
     const [name, setName] = useState('');
@@ -36,6 +37,7 @@ function ContactForm() {
         }
         dispatch(addContact({ name, phone }));
         resetForm();
+        toast.success('Add contact');
     };
 
     const handleAgreeChange = e => {
