@@ -7,37 +7,27 @@ const HeaderNavigation = () => {
             <nav className={s.navigation}>
                 <ul className={s.list}>
                     <li className={s.item}>
-                        <NavLink
-                            to="/"
-                            className={s.link}
-                            activeClassName={s.activeLink}
-                        >
+                        <NavLink to="/" className={`${s.link} ${s.active}`}>
                             Home
                         </NavLink>
                     </li>
                     <li className={s.item}>
                         <NavLink
                             to="/contacts"
-                            className={s.link}
-                            activeClassName={s.activeLink}
+                            className={`${s.link} ${s.active}`}
                         >
                             Contacts
                         </NavLink>
                     </li>
                     <li className={s.item}>
-                        <Link
-                            to="/login"
-                            className={s.link}
-                            activeClassName={s.activeLink}
-                        >
+                        <Link to="/login" className={`${s.link} ${s.active}`}>
                             Login
                         </Link>
                     </li>
                     <li className={s.item}>
                         <Link
                             to="/register"
-                            className={s.link}
-                            activeClassName={s.activeLink}
+                            className={`${s.link} ${s.active}`}
                         >
                             Register
                         </Link>

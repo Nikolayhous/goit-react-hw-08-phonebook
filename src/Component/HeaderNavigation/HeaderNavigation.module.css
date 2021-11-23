@@ -29,11 +29,8 @@
   color: tomato;
 }
 
-.activeLink {
+.active:active {
   color: tomato;
   border-bottom: 2px solid tomato;
   display: inline-block;
-}
-
-.navigation {
 }

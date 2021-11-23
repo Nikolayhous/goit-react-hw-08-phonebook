@@ -1,13 +1,10 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import HeaderNavigation from '../HeaderNavigation';
 import Footer from '../Footer';
 import Loader from '../Loader';
-import { register } from '../../redux/auth/auth-operations';
-
-console.log(register());
 
 const HomePage = lazy(() => import('../../_pages/HomePage'));
 const ContactsPage = lazy(() => import('../../_pages/ContactsPage'));
@@ -26,7 +23,7 @@ function App() {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/error" element={<NotFoundView />} />
-                    {/* <Redirect to="/error" /> */}
+                    {/* <Navigate to="/error" /> */}
                 </Routes>
             </Suspense>
             <Footer />
