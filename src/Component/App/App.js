@@ -1,31 +1,36 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Footer from '../Footer';
-import Welcome from '../Welcome';
+import { Suspense, lazy } from 'react';
 import HeaderNavigation from '../HeaderNavigation';
+import Footer from '../Footer';
+import Loader from '../Loader';
+import { register } from '../../redux/auth/auth-operations';
 
-const HomePage = lazy(() => import('../../_pages/Homepage'));
-const Contacts = lazy(() => import('../../_pages/Contactspage'));
-const Login = lazy(() => import('../../_pages/Loginpage'));
-const Register = lazy(() => import('../../_pages/Registerpage'));
+console.log(register());
+
+const HomePage = lazy(() => import('../../_pages/HomePage'));
+const ContactsPage = lazy(() => import('../../_pages/ContactsPage'));
+const LoginPage = lazy(() => import('../../_pages/LoginPage'));
+const RegisterPage = lazy(() => import('../../_pages/RegisterPage'));
+const NotFoundView = lazy(() => import('../../_pages/NotFoundView'));
 
 function App() {
     return (
         <>
             <HeaderNavigation />
-            <Suspense fallback={'loading...'}>
+            <Suspense fallback={<Loader />}>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/contacts" element={<Contacts />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route path="/contacts" element={<ContactsPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/error" element={<NotFoundView />} />
+                    {/* <Redirect to="/error" /> */}
                 </Routes>
             </Suspense>
             <Footer />
             <ToastContainer />
-            <Welcome />
         </>
     );
 }

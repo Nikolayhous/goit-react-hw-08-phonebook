@@ -4,7 +4,7 @@ import Filter from '../../Component/Filter';
 import ContactList from '../../Component/ContactList';
 import Title from '../../Component/Title';
 
-const Contacts = () => {
+const ContactsPage = () => {
     return (
         <Container>
             <Title titleText="Phonebook" />
@@ -15,4 +15,4 @@ const Contacts = () => {
     );
 };
 
-export default Contacts;
+export default ContactsPage;

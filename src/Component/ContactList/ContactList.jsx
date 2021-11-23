@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getFilteredContacts } from '../../redux/phonebook/selector';
+import PropTypes from 'prop-types';
 import s from './ContactList.module.css';
 import { fetchContact, deleteContact } from '../../redux/phonebook/operations';
 import { useEffect } from 'react';
@@ -57,5 +58,11 @@ function ContactList() {
         </div>
     );
 }
+
+ContactList.propTypes = {
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    id: PropTypes.string,
+};
 
 export default ContactList;
