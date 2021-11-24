@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 function ContactForm() {
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [number, setNumber] = useState('');
     const [agree, setAgree] = useState(false);
 
     const contacts = useSelector(getContacts);
@@ -19,8 +19,8 @@ function ContactForm() {
             case 'name':
                 setName(value);
                 break;
-            case 'phone':
-                setPhone(value);
+            case 'number':
+                setNumber(value);
                 break;
             default:
                 return;
@@ -35,7 +35,7 @@ function ContactForm() {
         if (comparableContact) {
             return alert(`Contact ${name} has already been added to the list`);
         }
-        dispatch(addContact({ name, phone }));
+        dispatch(addContact({ name, number }));
         resetForm();
         toast.success('Add contact');
     };
@@ -46,7 +46,7 @@ function ContactForm() {
 
     const resetForm = () => {
         setName('');
-        setPhone('');
+        setNumber('');
         setAgree(false);
     };
 
@@ -77,8 +77,8 @@ function ContactForm() {
                         <input
                             className={s.inputName}
                             type="tel"
-                            value={phone}
-                            name="phone"
+                            value={number}
+                            name="number"
                             placeholder="Enter number"
                             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                             title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
