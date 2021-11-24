@@ -30,6 +30,12 @@ const RegisterPage = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        // const comparableEmail = setEmail.some(
+        //     el => el.email.toLowerCase() === email.toLowerCase(),
+        // );
+        // if (comparableEmail) {
+        //     return alert(`Contact ${email} has already been added to the list`);
+        // }
         dispatch(fetchRegister({ name, email, password }));
         reset();
     };

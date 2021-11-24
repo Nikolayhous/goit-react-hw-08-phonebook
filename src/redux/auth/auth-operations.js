@@ -49,3 +49,21 @@ export const fetchLogOut = createAsyncThunk(
         }
     },
 );
+
+export const fetchCurrentUser = createAsyncThunk(
+    'auth/refresh',
+    async (_, { rejectWidthValue, getState }) => {
+        const state = getState();
+        const persistToken = state.auth.token;
+        if (persistToken === null) {
+            return rejectWidthValue();
+        }
+        token.set(persistToken);
+        try {
+            const { data } = await axios.get('/users/current');
+            return data;
+        } catch (error) {
+            rejectWidthValue(error.message);
+        }
+    },
+);

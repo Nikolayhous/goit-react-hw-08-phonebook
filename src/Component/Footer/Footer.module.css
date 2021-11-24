@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 25px;
   border-top: 3px solid rgba(29, 78, 78, 0.75);
 }
 

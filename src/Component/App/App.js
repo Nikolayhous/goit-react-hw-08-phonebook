@@ -1,15 +1,15 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from 'react-router-dom';
-import { Suspense, lazy } from 'react';
-import { Navigate } from 'react-router';
-import HeaderNavigation from '../HeaderNavigation';
+import { Suspense, lazy, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Footer from '../Footer';
 import Loader from '../Loader';
 import Container from '../Container';
 import PrivateRoute from '_routes/PrivatePublic';
 import PublicRoute from '_routes/PublicRoute';
 import AppBar from '../AppBar/AppBar';
+import { fetchCurrentUser } from '../../redux/auth/auth-operations';
 
 const HomePage = lazy(() => import('../../_pages/HomePage'));
 const ContactsPage = lazy(() => import('../../_pages/ContactsPage'));
@@ -18,6 +18,11 @@ const RegisterPage = lazy(() => import('../../_pages/RegisterPage'));
 const NotFoundView = lazy(() => import('../../_pages/NotFoundView'));
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCurrentUser());
+    }, [dispatch]);
     return (
         <>
             <AppBar />
@@ -42,7 +47,7 @@ function App() {
                         />
                         <Route path="/error" element={<NotFoundView />} />
                     </Routes>
-                    {/* <Navigate to="/error" / */}>
+                    {/* <Navigate to="/error" / */}
                 </Suspense>
             </Container>
             <Footer />

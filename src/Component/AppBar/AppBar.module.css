@@ -1,4 +1,7 @@
 .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   background-color: rgba(29, 78, 78, 0.5);
   padding: 35px 85px;
   box-shadow: 0 5px 0 #3c93d5;

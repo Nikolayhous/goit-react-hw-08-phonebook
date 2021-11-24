@@ -1,7 +1,6 @@
 .list {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
   list-style: none;
 }
 
@@ -10,8 +9,8 @@
 }
 
 .link {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 500;
   line-height: 1.2;
   padding: 10px;
   border: none;
@@ -24,7 +23,7 @@
 }
 
 /* .active:active {
-      color: tomato;
-      border-bottom: 2px solid tomato;
-      display: inline-block;
-    } */
+  color: tomato;
+  border-bottom: 2px solid tomato;
+  display: inline-block;
+} */

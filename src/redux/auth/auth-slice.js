@@ -1,11 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchRegister, fetchLogin, fetchLogOut } from './auth-operations';
+import {
+    fetchRegister,
+    fetchLogin,
+    fetchLogOut,
+    fetchCurrentUser,
+} from './auth-operations';
 
 const initialState = {
     user: { name: '', email: '' },
     token: '',
-    isGetCurrentUser: false,
     isAuth: false,
+    // currentUser: false,
 };
 
 const authSlice = createSlice({
@@ -26,6 +31,10 @@ const authSlice = createSlice({
             state.user = { name: '', email: '' };
             state.token = '';
             state.isAuth = false;
+        },
+        [fetchCurrentUser.fulfilled](state, { payload }) {
+            state.user = payload;
+            state.isAuth = true;
         },
     },
 });
