@@ -1,0 +1,30 @@
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.item:not(:last-child) {
+  margin-right: 25px;
+}
+
+.link {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color: rgb(231, 247, 250);
+}
+
+.link:hover {
+  color: tomato;
+}
+
+/* .active:active {
+      color: tomato;
+      border-bottom: 2px solid tomato;
+      display: inline-block;
+    } */

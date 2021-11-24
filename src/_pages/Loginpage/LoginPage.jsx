@@ -1,59 +1,97 @@
 import s from './Login.module.css';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from '../../Component/Container';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchLogin } from '../../redux/auth/auth-operations';
 
 const LoginPage = () => {
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+
+    const dispatch = useDispatch();
+
+    const handleChange = ({ target: { name, value } }) => {
+        switch (name) {
+            case 'email':
+                return setEmail(value);
+
+            case 'password':
+                return setPassword(value);
+
+            default:
+                return;
+        }
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(fetchLogin({ email, password }));
+        reset();
+    };
+
+    const reset = () => {
+        setPassword('');
+        setEmail('');
+    };
     return (
         <div className={s.content}>
-            <Container>
-                <Form>
-                    <Form.Group
-                        as={Row}
-                        className="mb-3"
-                        controlId="formHorizontalEmail"
-                    >
-                        <Form.Label column sm={2}>
-                            Email
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control type="email" placeholder="Email" />
-                        </Col>
-                    </Form.Group>
+            <h2 className={s.title}>Enter login</h2>
+            <Form onSubmit={handleSubmit} className={s.form}>
+                <Form.Group
+                    as={Row}
+                    className="mb-3"
+                    controlId="formHorizontalEmail"
+                >
+                    <Form.Label column sm={2}>
+                        Email
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            value={email}
+                            onChange={handleChange}
+                        />
+                    </Col>
+                </Form.Group>
 
-                    <Form.Group
-                        as={Row}
-                        className="mb-3"
-                        controlId="formHorizontalPassword"
-                    >
-                        <Form.Label column sm={2}>
-                            Password
-                        </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control
-                                type="password"
-                                placeholder="Password"
-                            />
-                        </Col>
-                    </Form.Group>
+                <Form.Group
+                    as={Row}
+                    className="mb-3"
+                    controlId="formHorizontalPassword"
+                >
+                    <Form.Label column sm={2}>
+                        Password
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={handleChange}
+                            placeholder="Password"
+                        />
+                    </Col>
+                </Form.Group>
 
-                    <Form.Group
-                        as={Row}
-                        className="mb-3"
-                        controlId="formHorizontalCheck"
-                    >
-                        <Col sm={{ span: 10, offset: 2 }}>
-                            <Form.Check label="Remember me" />
-                        </Col>
-                    </Form.Group>
+                <Form.Group
+                    as={Row}
+                    className="mb-3"
+                    controlId="formHorizontalCheck"
+                >
+                    <Col sm={{ span: 10, offset: 2 }}>
+                        <Form.Check label="Remember me" />
+                    </Col>
+                </Form.Group>
 
-                    <Form.Group as={Row} className="mb-3">
-                        <Col sm={{ span: 10, offset: 2 }}>
-                            <Button type="submit">Sign in</Button>
-                        </Col>
-                    </Form.Group>
-                </Form>
-            </Container>
+                <Form.Group as={Row} className="mb-3">
+                    <Col sm={{ span: 10, offset: 2 }}>
+                        <Button type="submit">Sign in</Button>
+                    </Col>
+                </Form.Group>
+            </Form>
         </div>
     );
 };

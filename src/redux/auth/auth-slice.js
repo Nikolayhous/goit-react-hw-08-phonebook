@@ -1,21 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register } from './auth-operations';
+import { fetchRegister, fetchLogin, fetchLogOut } from './auth-operations';
 
 const initialState = {
-    user: { name: null, email: null },
-    token: null,
+    user: { name: '', email: '' },
+    token: '',
+    isGetCurrentUser: false,
     isAuth: false,
 };
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
-
     extraReducers: {
-        [register.fulfilled](state, action) {
-            state.user = action.payload.name;
-            state.token = action.payload.token;
+        [fetchRegister.fulfilled](state, { payload }) {
+            state.user = payload.user;
+            state.token = payload.token;
             state.isAuth = true;
+        },
+        [fetchLogin.fulfilled](state, { payload }) {
+            state.user = payload.user;
+            state.token = payload.token;
+            state.isAuth = true;
+        },
+        [fetchLogOut.fulfilled](state, { payload }) {
+            state.user = { name: '', email: '' };
+            state.token = '';
+            state.isAuth = false;
         },
     },
 });
