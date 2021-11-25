@@ -6,12 +6,22 @@ const AuthNav = () => {
         <>
             <ul className={s.list}>
                 <li className={s.item}>
-                    <NavLink to="/login" className={`${s.link} ${s.active}`}>
+                    <NavLink
+                        to="/login"
+                        className={({ isActive }) =>
+                            isActive ? s.activeLink : s.link
+                        }
+                    >
                         Login
                     </NavLink>
                 </li>
                 <li className={s.item}>
-                    <NavLink to="/register" className={`${s.link} ${s.active}`}>
+                    <NavLink
+                        to="/register"
+                        className={({ isActive }) =>
+                            isActive ? s.activeLink : s.link
+                        }
+                    >
                         Register
                     </NavLink>
                 </li>

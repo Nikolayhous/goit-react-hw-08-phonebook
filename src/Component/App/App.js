@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux';
 import Footer from '../Footer';
 import Loader from '../Loader';
 import Container from '../Container';
-import PrivateRoute from '_routes/PrivatePublic';
-import PublicRoute from '_routes/PublicRoute';
+import PrivateRoute from '../../_routes/PrivatePublic';
+import PublicRoute from '../../_routes/PublicRoute';
 import AppBar from '../AppBar/AppBar';
 import { fetchCurrentUser } from '../../redux/auth/auth-operations';
 
@@ -45,9 +45,8 @@ function App() {
                             path="/register"
                             element={<PublicRoute component={RegisterPage} />}
                         />
-                        <Route path="/error" element={<NotFoundView />} />
+                        <Route path="/*" element={<NotFoundView />} />
                     </Routes>
-                    {/* <Navigate to="/error" / */}
                 </Suspense>
             </Container>
             <Footer />

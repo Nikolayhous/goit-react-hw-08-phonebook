@@ -1,14 +1,17 @@
 import s from './Login.module.css';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogin } from '../../redux/auth/auth-operations';
+import { getIsAuth } from '../../redux/auth/auth-selectors';
 
 const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
+    const isAuth = useSelector(getIsAuth);
     const dispatch = useDispatch();
 
     const handleChange = ({ target: { name, value } }) => {
@@ -27,6 +30,9 @@ const LoginPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(fetchLogin({ email, password }));
+        toast.success(
+            `You are logged into the contact book under ${email} account`,
+        );
         reset();
     };
 
@@ -35,64 +41,66 @@ const LoginPage = () => {
         setEmail('');
     };
     return (
-        <div className={s.content}>
-            <h2 className={s.title}>Enter login</h2>
-            <Form onSubmit={handleSubmit} className={s.form}>
-                <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formHorizontalEmail"
-                >
-                    <Form.Label column sm={2}>
-                        Email
-                    </Form.Label>
-                    <Col sm={10}>
-                        <Form.Control
-                            type="email"
-                            placeholder="Email"
-                            name="email"
-                            value={email}
-                            onChange={handleChange}
-                        />
-                    </Col>
-                </Form.Group>
+        !isAuth && (
+            <div className={s.content}>
+                <h2 className={s.title}>Enter login</h2>
+                <Form onSubmit={handleSubmit} className={s.form}>
+                    <Form.Group
+                        as={Row}
+                        className="mb-3"
+                        controlId="formHorizontalEmail"
+                    >
+                        <Form.Label column sm={2}>
+                            Email
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type="email"
+                                placeholder="Email"
+                                name="email"
+                                value={email}
+                                onChange={handleChange}
+                            />
+                        </Col>
+                    </Form.Group>
 
-                <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formHorizontalPassword"
-                >
-                    <Form.Label column sm={2}>
-                        Password
-                    </Form.Label>
-                    <Col sm={10}>
-                        <Form.Control
-                            type="password"
-                            name="password"
-                            value={password}
-                            onChange={handleChange}
-                            placeholder="Password"
-                        />
-                    </Col>
-                </Form.Group>
+                    <Form.Group
+                        as={Row}
+                        className="mb-3"
+                        controlId="formHorizontalPassword"
+                    >
+                        <Form.Label column sm={2}>
+                            Password
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control
+                                type="password"
+                                name="password"
+                                value={password}
+                                onChange={handleChange}
+                                placeholder="Password"
+                            />
+                        </Col>
+                    </Form.Group>
 
-                <Form.Group
-                    as={Row}
-                    className="mb-3"
-                    controlId="formHorizontalCheck"
-                >
-                    <Col sm={{ span: 10, offset: 2 }}>
-                        <Form.Check label="Remember me" />
-                    </Col>
-                </Form.Group>
+                    <Form.Group
+                        as={Row}
+                        className="mb-3"
+                        controlId="formHorizontalCheck"
+                    >
+                        <Col sm={{ span: 10, offset: 2 }}>
+                            <Form.Check label="Remember me" />
+                        </Col>
+                    </Form.Group>
 
-                <Form.Group as={Row} className="mb-3">
-                    <Col sm={{ span: 10, offset: 2 }}>
-                        <Button type="submit">Sign in</Button>
-                    </Col>
-                </Form.Group>
-            </Form>
-        </div>
+                    <Form.Group as={Row} className="mb-3">
+                        <Col sm={{ span: 10, offset: 2 }}>
+                            <Button type="submit">Sign in</Button>
+                        </Col>
+                    </Form.Group>
+                </Form>
+            </div>
+        )
     );
 };
 

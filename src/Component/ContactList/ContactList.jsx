@@ -17,10 +17,10 @@ function ContactList() {
         dispatch(fetchContact());
     }, [dispatch]);
 
-    const onDeleteContact = id => {
-        dispatch(deleteContact(id));
-        toast.success('Contact delete');
-    };
+    // const onDeleteContact = id => {
+    //     dispatch(deleteContact(id));
+    //     toast.success('Contact delete');
+    // };
 
     return (
         <div className={s.contactList}>
@@ -36,16 +36,25 @@ function ContactList() {
                         </tr>
                     </thead>
                     <tbody>
-                        {contacts.map(({ name, phone, id }) => (
+                        {contacts.map(({ name, number, id }) => (
                             <tr key={id}>
                                 <td></td>
                                 <td>{name}</td>
-                                <td>{phone}</td>
+                                <td>{number}</td>
                                 <td>
                                     <button
                                         className={s.btn}
                                         type="button"
-                                        onClick={() => onDeleteContact(id)}
+                                        onClick={() =>
+                                            dispatch(
+                                                deleteContact(
+                                                    id,
+                                                    toast.success(
+                                                        `Contact ${name} delete`,
+                                                    ),
+                                                ),
+                                            )
+                                        }
                                     >
                                         Delete
                                     </button>

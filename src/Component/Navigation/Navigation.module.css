@@ -15,14 +15,15 @@
   border: none;
   cursor: pointer;
   color: rgb(231, 247, 250);
+  text-decoration: none;
 }
 
 .link:hover {
   color: tomato;
 }
 
-/* .active:active {
-    color: tomato;
-    border-bottom: 2px solid tomato;
-    display: inline-block;
-  } */
+.activeLink {
+  composes: link;
+  color: tomato;
+  border-bottom: 2px solid tomato;
+}
