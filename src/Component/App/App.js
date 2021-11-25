@@ -2,7 +2,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../Footer';
 import Loader from '../Loader';
 import Container from '../Container';
@@ -10,44 +10,58 @@ import PrivateRoute from '../../_routes/PrivatePublic';
 import PublicRoute from '../../_routes/PublicRoute';
 import AppBar from '../AppBar/AppBar';
 import { fetchCurrentUser } from '../../redux/auth/auth-operations';
-
-const HomePage = lazy(() => import('../../_pages/HomePage'));
-const ContactsPage = lazy(() => import('../../_pages/ContactsPage'));
-const LoginPage = lazy(() => import('../../_pages/LoginPage'));
-const RegisterPage = lazy(() => import('../../_pages/RegisterPage'));
-const NotFoundView = lazy(() => import('../../_pages/NotFoundView'));
+import { fetchContact } from '../../redux/phonebook/operations';
+import { getIsAuth } from '../../redux/auth/auth-selectors';
+import HomePage from '../../_pages/HomePage';
+import ContactsPage from '../../_pages/ContactsPage';
+import LoginPage from '../../_pages/LoginPage';
+import RegisterPage from '../../_pages/RegisterPage';
+import NotFoundView from '../../_pages/NotFoundView';
+// const HomePage = lazy(() => import('../../_pages/HomePage'));
+// const ContactsPage = lazy(() => import('../../_pages/ContactsPage'));
+// const LoginPage = lazy(() => import('../../_pages/LoginPage'));
+// const RegisterPage = lazy(() => import('../../_pages/RegisterPage'));
+// const NotFoundView = lazy(() => import('../../_pages/NotFoundView'));
 
 function App() {
     const dispatch = useDispatch();
+    const isAuth = useSelector(getIsAuth);
 
     useEffect(() => {
         dispatch(fetchCurrentUser());
+        dispatch(fetchContact());
     }, [dispatch]);
+
     return (
         <>
             <AppBar />
             <Container>
-                <Suspense fallback={<Loader />}>
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={<PublicRoute component={HomePage} />}
-                        />
-                        <Route
-                            path="/contacts"
-                            element={<PrivateRoute component={ContactsPage} />}
-                        />
-                        <Route
-                            path="/login"
-                            element={<PublicRoute component={LoginPage} />}
-                        />
-                        <Route
-                            path="/register"
-                            element={<PublicRoute component={RegisterPage} />}
-                        />
-                        <Route path="/*" element={<NotFoundView />} />
-                    </Routes>
-                </Suspense>
+                {/* <Suspense fallback={<Loader />}> */}
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<PublicRoute component={HomePage} />}
+                    />
+                    <Route
+                        path="/contacts"
+                        element={
+                            <PrivateRoute
+                                isAuth={isAuth}
+                                component={ContactsPage}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/login"
+                        element={<PublicRoute component={LoginPage} />}
+                    />
+                    <Route
+                        path="/register"
+                        element={<PublicRoute component={RegisterPage} />}
+                    />
+                    <Route path="/*" element={<NotFoundView />} />
+                </Routes>
+                {/* </Suspense> */}
             </Container>
             <Footer />
             <ToastContainer />

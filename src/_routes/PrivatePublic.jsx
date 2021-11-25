@@ -1,9 +1,6 @@
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { getIsAuth } from '../redux/auth/auth-selectors';
 
-const PrivateRoute = ({ component: Component }) => {
-    const isAuth = useSelector(getIsAuth);
+const PrivateRoute = ({ isAuth, component: Component }) => {
     return <>{isAuth ? <Component /> : <Navigate to="/login" />}</>;
 };
 
