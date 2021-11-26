@@ -1,6 +1,7 @@
 .list {
   display: flex;
   list-style: none;
+  margin-left: 150px;
 }
 
 .item:not(:last-child) {

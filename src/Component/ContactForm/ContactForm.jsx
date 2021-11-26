@@ -37,7 +37,7 @@ function ContactForm() {
         }
         dispatch(addContact({ name, number }));
         resetForm();
-        toast.success(`Add ${name} contact`);
+        toast.success(`Add contact ${name} ${number} `);
     };
 
     const handleAgreeChange = e => {

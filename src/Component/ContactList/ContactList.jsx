@@ -50,7 +50,7 @@ function ContactList() {
                                                 deleteContact(
                                                     id,
                                                     toast.success(
-                                                        `Contact ${name} delete`,
+                                                        `Contact ${name} ${number} delete`,
                                                     ),
                                                 ),
                                             )

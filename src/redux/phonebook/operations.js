@@ -42,3 +42,20 @@ export const deleteContact = createAsyncThunk(
         }
     },
 );
+
+// export const fetchCurrentContacts = createAsyncThunk(
+//     'contacts/refresh',
+//     async (contactId, { rejectWidthValue, getState }) => {
+//         const state = getState();
+//         const persistContacts = state.contacts.contactList;
+//         if (persistContacts === null) {
+//             return rejectWidthValue();
+//         }
+//         try {
+//             const { data } = await axios.post(`/contacts/${contactId}`);
+//             return data;
+//         } catch (error) {
+//             rejectWidthValue(error.message);
+//         }
+//     },
+// );

@@ -10,6 +10,7 @@
 .logout {
   display: flex;
   align-items: center;
+  margin-right: 150px;
 }
 
 .img {
