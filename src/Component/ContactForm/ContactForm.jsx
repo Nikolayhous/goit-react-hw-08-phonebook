@@ -51,6 +51,7 @@ function ContactForm() {
     };
 
     return (
+       
         <div className={s.section__form}>
             <form className={s.form} onSubmit={handleSubmit}>
                 <h3 className={s.titleForm}>
