@@ -17,7 +17,7 @@ export const addContact = createAsyncThunk(
     },
 );
 
-export const fetchContact = createAsyncThunk(
+export const fetchContacts = createAsyncThunk(
     'contacts/fetch',
     async (_, { rejectWidthValue }) => {
         try {
@@ -33,29 +33,14 @@ export const deleteContact = createAsyncThunk(
     'contacts/delete',
     async (contactId, { rejectWidthValue }) => {
         try {
-            const {
-                data: { id },
-            } = await axios.delete(`/contacts/${contactId}`);
-            return id;
+            const response = await axios.delete(`/contacts/${contactId}`);
+            if (response.status === 200) {
+                return contactId;
+            } else {
+                throw new Error({ message: 'error' });
+            }
         } catch (error) {
             rejectWidthValue(error.message);
         }
     },
 );
-
-// export const fetchCurrentContacts = createAsyncThunk(
-//     'contacts/refresh',
-//     async (contactId, { rejectWidthValue, getState }) => {
-//         const state = getState();
-//         const persistContacts = state.contacts.contactList;
-//         if (persistContacts === null) {
-//             return rejectWidthValue();
-//         }
-//         try {
-//             const { data } = await axios.post(`/contacts/${contactId}`);
-//             return data;
-//         } catch (error) {
-//             rejectWidthValue(error.message);
-//         }
-//     },
-// );
