@@ -1,18 +1,23 @@
 import s from './Login.module.css';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogin } from '../../redux/auth/auth-operations';
-import { getIsAuth } from '../../redux/auth/auth-selectors';
+import { getIsAuth, errorRejected } from '../../redux/auth/auth-selectors';
 
 const LoginPage = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [error, setError] = useState(null);
 
     const isAuth = useSelector(getIsAuth);
+    const isUserError = useSelector(errorRejected);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setError(isUserError);
+    }, [isUserError]);
 
     const handleChange = ({ target: { name, value } }) => {
         switch (name) {
@@ -30,9 +35,6 @@ const LoginPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(fetchLogin({ email, password }));
-        toast.success(
-            `You are logged into the contact book under ${email} account`,
-        );
         reset();
     };
 
