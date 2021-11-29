@@ -6,11 +6,7 @@ body {
     sans-serif;
   background-image: url(./images/fon_novyy.jpg);
   background-repeat: no-repeat;
-  /* background-size: contain; */
-  /* backdrop-filter: blur(2px); */
-  /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 200% 200%;
-  animation: gradient 5s ease infinite; */
+  background-size: cover;
 }
 
 img {

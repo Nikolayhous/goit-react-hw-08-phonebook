@@ -94,6 +94,7 @@ const RegisterPage = () => {
                         <Col sm={10}>
                             <Form.Control
                                 type="password"
+                                minlength="8"
                                 placeholder="Password"
                                 name="password"
                                 value={password}

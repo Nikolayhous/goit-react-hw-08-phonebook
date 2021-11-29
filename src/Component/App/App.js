@@ -12,12 +12,6 @@ import AppBar from '../AppBar/AppBar';
 import { fetchCurrentUser } from '../../redux/auth/auth-operations';
 import { getIsAuth } from '../../redux/auth/auth-selectors';
 
-// import HomePage from '../../_pages/HomePage';
-// import ContactsPage from '../../_pages/ContactsPage';
-// import LoginPage from '../../_pages/LoginPage';
-// import RegisterPage from '../../_pages/RegisterPage';
-// import NotFoundView from '../../_pages/NotFoundView';
-
 const HomePage = lazy(() => import('../../_pages/HomePage'));
 const ContactsPage = lazy(() => import('../../_pages/ContactsPage'));
 const LoginPage = lazy(() => import('../../_pages/LoginPage'));

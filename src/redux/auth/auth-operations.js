@@ -29,32 +29,6 @@ export const fetchRegister = userData => dispatch => {
         });
 };
 
-// export const fetchRegister = createAsyncThunk(
-//     'auth/register',
-//     async (credentials, { rejectWithValue }) => {
-//         try {
-//             const { data } = await axios.post('/users/signup', credentials);
-//             token.set(data.token);
-//             return data;
-//         } catch (error) {
-//             rejectWithValue(error.message);
-//         }
-//     },
-// );
-
-// export const fetchLogin = createAsyncThunk(
-//     'auth/login',
-//     async (credentials, { rejectWidthValue }) => {
-//         try {
-//             const { data } = await axios.post('/users/login', credentials);
-//             token.set(data.token);
-//             return data;
-//         } catch (error) {
-//             rejectWidthValue(error.message);
-//         }
-//     },
-// );
-
 export const fetchLogin = userData => dispatch => {
     dispatch(authActions.logInRequest());
 
