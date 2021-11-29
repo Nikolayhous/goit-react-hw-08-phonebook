@@ -44,18 +44,3 @@ export const deleteContact = createAsyncThunk(
         }
     },
 );
-
-// export const logIn = userData => dispatch => {
-//     dispatch(authActions.logInRequest());
-
-//     axios
-//       .post('/users/login', userData)
-//       .then(response => {
-//         token.set(response.data.token);
-//         dispatch(authActions.logInSuccess(response.data));
-//       })
-//       .catch(error => {
-//         dispatch(authActions.logInError(error.message));
-//         toast.error(error.message);
-//       });
-//   };

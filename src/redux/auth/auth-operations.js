@@ -16,13 +16,13 @@ const token = {
 
 export const fetchRegister = createAsyncThunk(
     'auth/register',
-    async (credentials, { rejectWidthValue }) => {
+    async (credentials, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/users/signup', credentials);
             token.set(data.token);
             return data;
         } catch (error) {
-            rejectWidthValue(error.message);
+            rejectWithValue(error.message);
         }
     },
 );
@@ -57,30 +57,30 @@ export const fetchLogin = userData => dispatch => {
 
 export const fetchLogOut = createAsyncThunk(
     'auth/logout',
-    async (_, { rejectWidthValue }) => {
+    async (_, { rejectWithValue }) => {
         try {
             await axios.post('/users/logout');
             token.unset();
         } catch (error) {
-            rejectWidthValue(error.message);
+            rejectWithValue(error.message);
         }
     },
 );
 
 export const fetchCurrentUser = createAsyncThunk(
     'auth/refresh',
-    async (_, { rejectWidthValue, getState }) => {
+    async (_, { rejectWithValue, getState }) => {
         const state = getState();
         const persistToken = state.auth.token;
-        if (persistToken === null) {
-            return rejectWidthValue();
+        if (!persistToken) {
+            return rejectWithValue();
         }
         token.set(persistToken);
         try {
             const { data } = await axios.get('/users/current');
             return data;
         } catch (error) {
-            rejectWidthValue(error.message);
+            rejectWithValue(error.message);
         }
     },
 );
