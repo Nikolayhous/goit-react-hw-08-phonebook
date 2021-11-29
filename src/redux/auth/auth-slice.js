@@ -18,10 +18,14 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     extraReducers: {
-        [fetchRegister.fulfilled](state, { payload }) {
-            state.user = payload.user;
-            state.token = payload.token;
+        [authAction.registerSuccess](state, action) {
+            state.user = action.payload.user;
+            state.token = action.payload.token;
             state.isAuth = true;
+        },
+
+        [authAction.registerError](state, action) {
+            state.error = action.payload.message;
         },
         [fetchLogin.fulfilled](state, { payload }) {
             state.user = payload.user;

@@ -14,18 +14,33 @@ const token = {
     },
 };
 
-export const fetchRegister = createAsyncThunk(
-    'auth/register',
-    async (credentials, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.post('/users/signup', credentials);
-            token.set(data.token);
-            return data;
-        } catch (error) {
-            rejectWithValue(error.message);
-        }
-    },
-);
+export const fetchRegister = userData => dispatch => {
+    dispatch(authActions.logInRequest());
+
+    axios
+        .post('/users/signup', userData)
+        .then(response => {
+            token.set(response.data.token);
+            dispatch(authActions.registerSuccess(response.data));
+        })
+        .catch(error => {
+            dispatch(authActions.registerError(error.message));
+            toast.error(error.message);
+        });
+};
+
+// export const fetchRegister = createAsyncThunk(
+//     'auth/register',
+//     async (credentials, { rejectWithValue }) => {
+//         try {
+//             const { data } = await axios.post('/users/signup', credentials);
+//             token.set(data.token);
+//             return data;
+//         } catch (error) {
+//             rejectWithValue(error.message);
+//         }
+//     },
+// );
 
 // export const fetchLogin = createAsyncThunk(
 //     'auth/login',

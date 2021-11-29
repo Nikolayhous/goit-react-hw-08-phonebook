@@ -1,7 +1,6 @@
 import s from './Register.module.css';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRegister } from '../../redux/auth/auth-operations';
@@ -34,7 +33,6 @@ const RegisterPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(fetchRegister({ name, email, password }));
-        toast.success(`You have successfully created an account ${name}`);
         reset();
     };
 
